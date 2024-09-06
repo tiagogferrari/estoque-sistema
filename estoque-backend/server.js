@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { initDB } = require('./models');
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/product');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
+app.use('/products', productRoutes);
 
 initDB();
 app.listen(5000, () => {

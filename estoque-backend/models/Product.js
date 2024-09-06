@@ -14,7 +14,7 @@ const Product = sequelize.define('Product', {
     type: DataTypes.TEXT,
     allowNull: true
   },
-  unitValue: {
+  unityValue: {
     type: DataTypes.DECIMAL(10, 2), // 10 dígitos no total, (2 após o ponto decimal)
     allowNull: false
   },
@@ -25,9 +25,11 @@ const Product = sequelize.define('Product', {
 });
 
 Product.beforeSave((product) => {
-  if (product.unitValue && product.quantity) {
-    product.totalValue = product.unitValue * product.quantity;
+  if (product.unityValue && product.quantity) {
+    product.totalValue = product.unityValue * product.quantity;
   }
 });
 
 module.exports = Product;
+
+//enviei o migration como unityValue e aqui estava unitValue (se der b.o, pode ser isso)
