@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password }, { withCredentials: true });
       setMessage(response.data.message);
       console.log(`Usuário ${username} logado com sucesso!`);
     } catch (error) {
