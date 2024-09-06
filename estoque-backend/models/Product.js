@@ -25,8 +25,8 @@ const Product = sequelize.define('Product', {
 });
 
 Product.beforeSave((product) => {
-  if (product.valorUnidade && product.quantidade) {
-    product.valorTotal = product.valorUnidade * product.quantidade;
+  if (product.unitValue && product.quantity) {
+    product.totalValue = product.unitValue * product.quantity;
   }
 });
 
