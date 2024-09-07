@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const Company = require('./Company');
 
 const Product = sequelize.define('Product', {
   name: {
@@ -22,6 +23,13 @@ const Product = sequelize.define('Product', {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: true
   },
+  companyId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Company',
+      key: 'id'
+    }
+  }
 });
 
 Product.beforeSave((product) => {
@@ -29,6 +37,9 @@ Product.beforeSave((product) => {
     product.totalValue = product.unityValue * product.quantity;
   }
 });
+
+Product.belongsTo(Company, { foreignKey: 'companyId' });
+Company.hasMany(Product, { foreignKey: 'companyId' });
 
 module.exports = Product;
 

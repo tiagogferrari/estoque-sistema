@@ -1,6 +1,7 @@
 const sequelize = require('../config/database');
 const User = require('./User');
 const Product = require('./Product');
+const Company = require('./Company');
 
 const initDB = async () => {
   try {
@@ -14,4 +15,4 @@ const initDB = async () => {
   }
 };
 
-module.exports = { initDB, User, Product };
+module.exports = { initDB, User, Product, Company };
