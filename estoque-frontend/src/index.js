@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<AddProduct />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -27,11 +27,11 @@ root.render(
 
 // Registro e login ok
 // Criação empresa ok
+// Criação de produto atrelado à empresa ok
 
 //Testar
 //updateCompany
 //deleteCompany
-//createProduct 
 //getProducts
 //getProductById
 //updateProduct

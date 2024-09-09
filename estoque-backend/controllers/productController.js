@@ -1,11 +1,14 @@
-const { Product } = require('../models');
+const { Product, Company } = require('../models');
 
 const createProduct = async (req, res) => {
-    const { name, quantity, description, unityValue } = req.body;
+    const { name, quantity, description, unityValue, companyId } = req.body;
+
     try {
-        const product = await Product.create({ name, quantity, description, unityValue });
+        const company = await Company.findByPk(companyId);
+        if (!company) return res.status(404).json({ error: 'Empresa não encontrada' });
+        const product = await Product.create({ name, quantity, description, unityValue, companyId });
         res.status(201).json({ message: 'Produto cadastrado!', product });
-    } catch {
+    } catch (error) {
         res.status(500).json({ error: 'Erro ao cadastrar produto' });
     }
 };

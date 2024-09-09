@@ -7,12 +7,14 @@ const AddProduct = () => {
     const [quantity, setQuantity] = useState('');
     const [description, setDescription] = useState('');
     const [unityValue, setUnityValue] = useState('');
+    const [companyId, setCompanyId] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const companyIdNumber = Number(companyId);
         try {
-            const response = await axios.post('http://localhost:5000/products/', { name, quantity, description, unityValue });
+            const response = await axios.post('http://localhost:5000/products/', { name, quantity, description, unityValue, companyId });
             setMessage(response.data.message);
         } catch (error) {
             setMessage('Erro ao cadastrar produto');
@@ -58,6 +60,15 @@ const AddProduct = () => {
                         min="0.01"
                         step="0.01"
                         placeholder="Valor por Unidade (R$)"
+                        required />
+                </label>
+                <br />
+                <label>
+                    Id da empresa*
+                    <input type="number"
+                        value={companyId}
+                        onChange={(e) => setCompanyId(e.target.value)}
+                        min="0" placeholder="Id empresa"
                         required />
                 </label>
                 <br />

@@ -28,7 +28,8 @@ const Product = sequelize.define('Product', {
     references: {
       model: 'companies',
       key: 'id'
-    }
+    },
+    allowNull: false
   }
 }, {
   tableName: 'products'
@@ -42,5 +43,3 @@ Product.beforeSave((product) => {
 });
 
 module.exports = Product;
-
-//enviei o migration como unityValue e aqui estava unitValue (se der b.o, pode ser isso)
