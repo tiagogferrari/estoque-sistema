@@ -26,20 +26,20 @@ const Product = sequelize.define('Product', {
   companyId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Company',
+      model: 'companies',
       key: 'id'
     }
   }
-});
+}, {
+  tableName: 'products'
+}
+);
 
 Product.beforeSave((product) => {
   if (product.unityValue && product.quantity) {
     product.totalValue = product.unityValue * product.quantity;
   }
 });
-
-Product.belongsTo(Company, { foreignKey: 'companyId' });
-Company.hasMany(Product, { foreignKey: 'companyId' });
 
 module.exports = Product;
 

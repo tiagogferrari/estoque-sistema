@@ -34,14 +34,14 @@ const Company = sequelize.define('Company', {
     ownerId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'User',
-          key: 'id'
+            model: 'users',
+            key: 'id'
         },
         allowNull: false
-      }
-});
-
-Company.belongsTo(User, { foreignKey: 'ownerId' });
-User.hasMany(Company, { foreignKey: 'ownerId' });
+    }
+}, {
+    tableName: 'companies'
+}
+);
 
 module.exports = Company;

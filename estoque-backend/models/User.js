@@ -12,9 +12,8 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  tableName: 'users'
 });
-
-User.hasMany(Company, { foreignKey: 'ownerId' });
-Company.belongsTo(User, { foreignKey: 'ownerId' });
 
 module.exports = User;
