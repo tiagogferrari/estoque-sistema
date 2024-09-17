@@ -1,7 +1,5 @@
-const { User } = require('../models');
-const { Company } = require('../models/Company');
-
-const bcrypt = require('bcryptjs');
+import { User, Company } from '../models';
+import { hash } from 'bcryptjs';
 
 const updateUser = async (req, res) => {
   try {
@@ -25,7 +23,7 @@ const updateUser = async (req, res) => {
     // Criptografa a senha se uma nova senha foi fornecida
     let hashedPassword = user.password;
     if (password) {
-      hashedPassword = await bcrypt.hash(password, 10);
+      hashedPassword = await hash(password, 10);
     }
 
     // Atualiza os campos fornecidos, mantendo os valores antigos se não forem enviados
@@ -54,7 +52,7 @@ const deleteUser = async (req, res) => {
 
 const getUserCompanies = async (req, res) => {
     try {
-      const ownerId = req.user.id;
+      const ownerId = req.user;
       const companies = await Company.findAll({
         where: { ownerId }
       });
@@ -68,7 +66,7 @@ const getUserCompanies = async (req, res) => {
     }
   };
 
-  module.exports = {
+  export default {
     updateUser,
     deleteUser,
     getUserCompanies
