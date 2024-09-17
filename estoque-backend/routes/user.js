@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { updateUser, deleteUser, getUserCompanies } = require('../controllers/userController');
+const authenticateToken = require('../middlewares/authMiddleware');
 
-router.put('/user', updateUser);
+router.put('/', authenticateToken, updateUser);
 
-router.delete('/user', deleteUser);
+router.delete('/', authenticateToken, deleteUser);
 
-router.get('/user/companies', getUserCompanies);
+router.get('/companies', authenticateToken, getUserCompanies);
 
 module.exports = router;

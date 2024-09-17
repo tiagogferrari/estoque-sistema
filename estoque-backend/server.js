@@ -6,6 +6,7 @@ const { initDB } = require('./models');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/product');
 const companyRoutes = require('./routes/company');
+const userRoutes = require('./routes/user')
 
 const app = express();
 
@@ -19,7 +20,8 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
 app.use('/products', productRoutes);
-app.use('/company', companyRoutes);
+app.use('/company', companyRoutes)
+app.use('/user', userRoutes);
 
 initDB();
 app.listen(5000, () => {
