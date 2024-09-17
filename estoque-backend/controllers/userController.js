@@ -1,19 +1,27 @@
 const { User } = require('../models');
+const bcrypt = require('bcryptjs');
 
 const updateUser = async (req, res) => {
-    try {
-        const { id } = req.user;
-        const { username, password } = req.body;
-        const user = await User.findByPk(id);
-        await user.update({
-            username: username || user.username,
-            password: password || user.password
-        });
-        res.json(user);
-    } catch (error) {
-        console.error('Erro ao atualizar usuário:', error);
-        res.status(500).json({ message: 'Erro ao atualizar usuário' });
+  try {
+    const { id } = req.user;  // Supondo que o ID do usuário seja extraído do token de autenticação
+    const { username, password } = req.body;
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
     }
+    let hashedPassword = user.password;
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
+    await user.update({
+      username: username || user.username,
+      password: hashedPassword
+    });
+    res.json({ message: 'Usuário atualizado com sucesso', user });
+  } catch (error) {
+    console.error('Erro ao atualizar usuário:', error);
+    res.status(500).json({ message: 'Erro ao atualizar usuário' });
+  }
 };
 
 const deleteUser = async (req, res) => {
