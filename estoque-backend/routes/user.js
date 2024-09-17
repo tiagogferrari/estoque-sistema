@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { updateUser, deleteUser, getUserCompanies } = require('../controllers/userController').default;
+const { updateUser, deleteUser, getUserCompanies } = require('../controllers/userController');
 const authenticateToken = require('../middlewares/authMiddleware');
 
 router.put('/', authenticateToken, updateUser);
