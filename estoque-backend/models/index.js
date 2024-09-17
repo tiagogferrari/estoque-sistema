@@ -14,10 +14,7 @@ const initDB = async () => {
     await sequelize.authenticate();
     console.log('Conexão estabelecida com sucesso.');
 
-    await User.sync();
-    await Company.sync();
-    await Product.sync();
-    
+    await sequelize.sync({ alter: true });
     console.log('Tables sincronizadas.');
   } catch (error) {
     console.error('Erro ao conectar ao banco de dados:', error);
