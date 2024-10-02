@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import AuthForm from '../components/AuthForm';
 
+const Register = () => {
+  return <AuthForm isRegister={true}/>;
+};
+
+export default Register;
+
+/*
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -46,6 +53,7 @@ const Register = () => {
       <p>{message}</p>
     </div>
   );
-};
+  };
 
 export default Register;
+ */

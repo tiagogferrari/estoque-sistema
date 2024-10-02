@@ -1,7 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import AuthForm from "../components/AuthForm";
 
+const Login = () => {
+	return <AuthForm isRegister={false} />;
+};
+
+export default Login;
+
+/*
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -18,7 +24,6 @@ const Login = () => {
 				{ withCredentials: true },
 			);
 			setMessage(response.data.message);
-			console.log(`Usuário ${username} logado com sucesso!`);
 			navigate("/addProduct");
 		} catch (error) {
 			setMessage("Erro ao fazer login front");
@@ -54,6 +59,8 @@ const Login = () => {
 			<p>{message}</p>
 		</div>
 	);
-};
+
+	};
 
 export default Login;
+*/
